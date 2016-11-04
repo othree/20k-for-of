@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-alert('a');
+console.log('a');
 
 var arr = [];
 

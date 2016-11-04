@@ -767,7 +767,7 @@ var getIterator = createCommonjsModule(function (module) {
 
 var _getIterator = unwrapExports(getIterator);
 
-alert('a');
+console.log('a');
 
 var arr = [];
 

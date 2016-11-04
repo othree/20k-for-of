@@ -11,11 +11,8 @@ gulp.task('bundle', function () {
   return rollup({
     entry: './script.js',
     plugins: [
-      // nodeResolve({ jsnext: true }),
-      // commonjs(),
       babel({
-        // "plugins": ["transform-runtime"],
-        "presets": ["es2015-rollup"]
+        presets: ['es2015-rollup']
       })
     ]
   }).then(function (bundle) {
@@ -30,11 +27,8 @@ gulp.task('bundle:loose', function () {
   return rollup({
     entry: './script.js',
     plugins: [
-      // nodeResolve({ jsnext: true }),
-      // commonjs(),
       babel({
-        // "plugins": ["transform-runtime"],
-        "presets": ["es2015-loose-rollup"]
+        presets: ['es2015-loose-rollup']
       })
     ]
   }).then(function (bundle) {
@@ -52,8 +46,8 @@ gulp.task('bundle:all', function () {
       nodeResolve({ jsnext: true }),
       commonjs(),
       babel({
-        "plugins": ["transform-runtime"],
-        "presets": ["es2015-loose-rollup"]
+        plugins: ['transform-runtime'],
+        presets: ['es2015-loose-rollup']
       })
     ]
   }).then(function (bundle) {
@@ -66,7 +60,7 @@ gulp.task('bundle:all', function () {
 
 gulp.task('bundle:ts', function () {
   return rollup({
-    entry: './script.ts',
+    entry: './script-ts.ts',
     plugins: [
       typescript()
     ]
