@@ -5,7 +5,7 @@ var nodeResolve = require('rollup-plugin-node-resolve');
 var commonjs = require('rollup-plugin-commonjs');
 var typescript = require('rollup-plugin-typescript');
 
-gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:ts']);
+gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:runtime', 'bundle:ts']);
 
 gulp.task('bundle', function () {
   return rollup({
@@ -35,6 +35,24 @@ gulp.task('bundle:loose', function () {
     return bundle.write({
       format: 'iife',
       dest: './out/bundle-loose.js'
+    });
+  });
+});
+
+gulp.task('bundle:runtime', function () {
+  return rollup({
+    entry: './script.js',
+    plugins: [
+      commonjs(),
+      babel({
+        plugins: ['transform-runtime'],
+        presets: ['es2015-loose-rollup']
+      })
+    ]
+  }).then(function (bundle) {
+    return bundle.write({
+      format: 'iife',
+      dest: './out/bundle-runtime.js'
     });
   });
 });
