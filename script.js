@@ -1,6 +1,4 @@
-import m from './mod.js';
-
-var arr = [1, 2, 3];
+import arr from './mod.js';
 
 for (let v of arr) {
     console.log(v);
