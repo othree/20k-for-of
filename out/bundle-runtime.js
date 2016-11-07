@@ -5,7 +5,7 @@ _getIterator = 'default' in _getIterator ? _getIterator['default'] : _getIterato
 
 console.log('a');
 
-var arr = [];
+var arr = [1, 2, 3];
 
 for (var _iterator = arr, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _getIterator(_iterator);;) {
     var _ref;

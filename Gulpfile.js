@@ -44,7 +44,6 @@ gulp.task('bundle:runtime', function () {
   return rollup({
     entry: './script.js',
     plugins: [
-      commonjs(),
       babel({
         plugins: ['transform-runtime'],
         presets: ['es2015-loose-rollup']
@@ -62,12 +61,15 @@ gulp.task('bundle:all', function () {
   return rollup({
     entry: './script.js',
     plugins: [
-      nodeResolve({ jsnext: true }),
-      commonjs(),
       babel({
+        exclude: 'node_modules/**',
         plugins: ['transform-runtime'],
         presets: ['es2015-loose-rollup'],
         runtimeHelpers: true
+      }),
+      nodeResolve({ jsnext: true }),
+      commonjs({
+        include: 'node_modules/**'
       })
     ]
   }).then(function (bundle) {

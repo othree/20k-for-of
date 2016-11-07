@@ -3,7 +3,7 @@
 
 console.log('a');
 
-var arr = [];
+var arr = [1, 2, 3];
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
