@@ -1,28 +1,27 @@
-import _getIterator from "babel-runtime/core-js/get-iterator";
-var arr = [1, 2, 3];
+(function (_getIterator) {
+'use strict';
 
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+_getIterator = 'default' in _getIterator ? _getIterator['default'] : _getIterator;
 
-try {
-  for (var _iterator = _getIterator(arr), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var v = _step.value;
+console.log('a');
+
+var arr = [];
+
+for (var _iterator = arr, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _getIterator(_iterator);;) {
+    var _ref;
+
+    if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+    } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+    }
+
+    var v = _ref;
 
     console.log(v);
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator.return) {
-      _iterator.return();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
 }
 
+}(_getIterator));

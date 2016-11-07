@@ -4,8 +4,9 @@ var babel = require('rollup-plugin-babel');
 var nodeResolve = require('rollup-plugin-node-resolve');
 var commonjs = require('rollup-plugin-commonjs');
 var typescript = require('rollup-plugin-typescript');
+var buble = require('rollup-plugin-buble');
 
-gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:runtime', 'bundle:ts']);
+gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:runtime', 'bundle:ts', 'bundle:buble']);
 
 gulp.task('bundle', function () {
   return rollup({
@@ -65,7 +66,8 @@ gulp.task('bundle:all', function () {
       commonjs(),
       babel({
         plugins: ['transform-runtime'],
-        presets: ['es2015-loose-rollup']
+        presets: ['es2015-loose-rollup'],
+        runtimeHelpers: true
       })
     ]
   }).then(function (bundle) {
@@ -86,6 +88,24 @@ gulp.task('bundle:ts', function () {
     return bundle.write({
       format: 'iife',
       dest: './out/bundle-ts.js'
+    });
+  });
+});
+
+gulp.task('bundle:buble', function () {
+  return rollup({
+    entry: './script.js',
+    plugins: [
+      buble({
+        transforms: {
+          dangerousForOf: true
+        }
+      })
+    ]
+  }).then(function (bundle) {
+    return bundle.write({
+      format: 'iife',
+      dest: './out/bundle-buble.js'
     });
   });
 });
