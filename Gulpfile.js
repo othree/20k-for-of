@@ -6,7 +6,7 @@ var commonjs = require('rollup-plugin-commonjs');
 var typescript = require('rollup-plugin-typescript');
 var buble = require('rollup-plugin-buble');
 
-gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:runtime', 'bundle:ts', 'bundle:buble']);
+gulp.task('default', ['bundle:all', 'bundle', 'bundle:loose', 'bundle:runtime', 'bundle:ts', 'bundle:ts:es6', 'bundle:buble']);
 
 gulp.task('bundle', function () {
   return rollup({
@@ -94,6 +94,21 @@ gulp.task('bundle:ts', function () {
   });
 });
 
+gulp.task('bundle:ts:es6', function () {
+  return rollup({
+    entry: './script-ts.ts',
+    plugins: [
+      typescript({
+        target: 'ES6'
+      })
+    ]
+  }).then(function (bundle) {
+    return bundle.write({
+      format: 'iife',
+      dest: './out/bundle-ts-es6.js'
+    });
+  });
+});
 gulp.task('bundle:buble', function () {
   return rollup({
     entry: './script.js',
